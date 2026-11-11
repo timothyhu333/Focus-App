@@ -2,8 +2,8 @@ import { useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([
-    "Build Dashboard",
-    "Add Task System",
+    { text: "Build Dashboard", completed: false },
+    { text: "Add Task System", completed: false },
   ]);
 
   const addTask = () => {
@@ -11,15 +11,27 @@ function App() {
 
     if (!taskName) return;
 
-    setTasks([...tasks, taskName]);
+    setTasks([
+      ...tasks,
+      {
+        text: taskName,
+        completed: false,
+      },
+    ]);
+  };
+
+  const completeTask = (index: number) => {
+    const updatedTasks = [...tasks];
+
+    updatedTasks[index].completed =
+      !updatedTasks[index].completed;
+
+    setTasks(updatedTasks);
   };
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
       <h1>🚀 MyFocus</h1>
-
-      <h2>Today's Goal</h2>
-      <p>Build my personal productivity system.</p>
 
       <button onClick={addTask}>
         Add Task
@@ -29,9 +41,32 @@ function App() {
 
       {tasks.map((task, index) => (
         <div key={index}>
-          ⬜ {task}
+          <button onClick={() => completeTask(index)}>
+            {task.completed ? "✅" : "⬜"}
+          </button>
+
+          <span
+            style={{
+              marginLeft: "10px",
+              textDecoration: task.completed
+                ? "line-through"
+                : "none",
+            }}
+          >
+            {task.text}
+          </span>
         </div>
       ))}
+
+      <h2>Stats</h2>
+
+      <p>
+        Completed: {
+          tasks.filter((task) => task.completed).length
+        }
+      </p>
+
+      <p>Total Tasks: {tasks.length}</p>
     </div>
   );
 }
