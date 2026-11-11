@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/lucide-react.d.ts","./src/main.tsx","./src/app/Shell.tsx","./src/components/UI.tsx","./src/context/AppContext.tsx","./src/pages/CrudPages.tsx","./src/pages/Dashboard.tsx","./src/pages/Settings.tsx","./src/pages/WellbeingPages.tsx","./src/types/index.ts","./src/utils/data.ts"],"version":"5.8.3"}
